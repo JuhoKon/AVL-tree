@@ -163,20 +163,24 @@ puuosoitin yksitlisaus(puuosoitin puu) {
   int i = 1,etp =0;
   while (i != 0) { 				/* toistorakenne avaimien lisäämiseen yksikerrallaan puuhun */ 
     printf("Anna lisättävät avaimet puuhun (0 lopettaa):");
-    scanf("%d",&i);
-    if (i == 0) {  	 
-      break;
-    }
-    printf("\n\n");
-    lisaa_solmu(&puu,i,&etp); /* puuhun lisäys */
-    /*info tulostuksia*/
-    printf("Puun avaimet sekä tasapainot:\n");
-    tulosta_puu(puu);  /*tasapainojen tulostus */
-    printf("\n\n");
-    printf("Puun tasapainotettu rakenne:\n");
-    print2D(puu,0);		/*itse puun tulostus */
-    printf("\n\n");
-    printf("--------------------------------------------------------------------\n");
+    if (scanf("%d",&i) == 1) {
+		  if (i == 0) { 
+		    break;
+			}
+		  printf("\n\n");
+		  lisaa_solmu(&puu,i,&etp); /* puuhun lisäys */
+		  /*info tulostuksia*/
+		  printf("Puun avaimet sekä tasapainot:\n");
+		  tulosta_puu(puu);  /*tasapainojen tulostus */
+		  printf("\n\n");
+		  printf("Puun tasapainotettu rakenne:\n");
+		  print2D(puu,0);		/*itse puun tulostus */
+		  printf("\n\n");
+		  printf("--------------------------------------------------------------------\n");
+		} else {
+			printf("Väärä syöte.\n");
+			exit(1);
+		}	
   }
   return puu;
 }
