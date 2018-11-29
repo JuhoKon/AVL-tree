@@ -78,7 +78,7 @@ int main() {
     freememory(puu);
   }
 
-  pAlku = tyhjenna(pAlku);
+  tyhjenna(pAlku);
 	printf("Kiitos ohjelman käytöstä!\n");
   return 0;
 }

@@ -10,7 +10,7 @@
 #include "puu.h"
 void lisaa_solmu(puuosoitin *emo, int luku, int *etp) {
 
-  if(*emo == NULL) {  /*liikutaan niin pitkälle solmussa, että löydetään vasen/oikea vapaa (riippuen luvusta) */
+  if((*emo) == NULL) {  /*liikutaan niin pitkälle solmussa, että löydetään vasen/oikea vapaa (riippuen luvusta) */
     *etp = 1;					/* kun löydetään, niin *etp annetaan arvo 1 */
     if((*emo = (puuosoitin)malloc(sizeof(puusolmu))) == NULL) {
       
