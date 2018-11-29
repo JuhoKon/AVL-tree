@@ -35,6 +35,8 @@ void lisaa_solmu(puuosoitin *emo, int luku, int *etp) {
 	(*emo)->tila = 1;		/* lisättiin vasemmalle, joten +1, tilanne oli sellainen , että k.o solmu oli tasapainossa. */ 											
 	break;
       case 1:
+	printf("Epätasapaino kohdattu avaimessa %d, puun rakenne epätasapainokohdasta ennen vasempaa kiertoa:\n",(*emo)->luku);
+	print2D(*emo,0);
 	vasen_kierto(emo, etp);	/*lisättiin vasemmalle, jonka seurauksena epätasapainossa, joten tehdään vasenkierto. */
       }
     }
@@ -54,6 +56,8 @@ void lisaa_solmu(puuosoitin *emo, int luku, int *etp) {
 	(*emo)->tila = -1;
 	break;
       case -1:
+	printf("Epätasapaino kohdattu avaimessa %d, puun rakenne epätasapainokohdasta ennen oikeaa kiertoa:\n",(*emo)->luku);
+	print2D(*emo,0);
 	oikea_kierto(emo, etp);
       }
     }
@@ -65,7 +69,7 @@ void lisaa_solmu(puuosoitin *emo, int luku, int *etp) {
 void vasen_kierto(puuosoitin *emo, int *etp) {
   
   puuosoitin lapsi, lapsenlapsi;
-  
+
   lapsi = (*emo)->vasen;
   if(lapsi->tila == 1) {  /* LL-kierto */
     printf("Tehdään LL-kierto.. Epätasapaino havaittu.\n");
@@ -109,21 +113,21 @@ void oikea_kierto(puuosoitin *emo, int *etp) {
     (*emo) = lapsi;
   } else { /* RL-kierto */
     lapsenlapsi = lapsi->vasen;
-    printf("Tehdään LR-kierto.. Epätasapaino havaittu.\n");
+    printf("Tehdään RL-kierto.. Epätasapaino havaittu.\n");
     lapsi->vasen = lapsenlapsi->oikea;
     lapsenlapsi->oikea = lapsi;
     (*emo)->oikea = lapsenlapsi->vasen;
     lapsenlapsi->vasen = *emo;
     
     switch(lapsenlapsi->tila) {
-    case 1:
+    case -1:
       (*emo)->tila = 1;
       lapsi->tila = 0;
       break;
     case 0:
       (*emo)->tila = lapsi->tila = 0;
       break;
-    case -1:
+    case 1:
       (*emo)->tila = 0;
       lapsi->tila = -1;
     }
